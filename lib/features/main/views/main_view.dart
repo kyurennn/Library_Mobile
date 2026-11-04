@@ -2,17 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:library_mobile/features/catalog/views/catalog_view.dart';
 import 'package:library_mobile/features/home/views/home_view.dart';
 import 'package:library_mobile/features/profile/views/profile_view.dart';
+import 'package:library_mobile/features/saved/views/saved_view.dart';
 
 // Halaman utama dengan navigasi bottom bar
 class MainView extends StatefulWidget {
-  const MainView({super.key});
+  final int initialIndex;
+  const MainView({super.key, this.initialIndex = 0});
 
   @override
   State<MainView> createState() => _MainViewState();
 }
 
 class _MainViewState extends State<MainView> {
-  int _currentIndex = 0;
+  late int _currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.initialIndex;
+  }
 
   // Warna navigasi bottom bar
   static const Color _barBg = Color(0xFF090E1A);
@@ -20,10 +28,11 @@ class _MainViewState extends State<MainView> {
   static const Color _grey = Color(0xFF64748B);
   static const Color _border = Color(0xFF1E2D4A);
 
-  // Daftar tab tampilan utama
+  // Daftar tab tampilan utama: Beranda, Jelajahi, Tersimpan, Akun
   final List<Widget> _views = const [
     HomeView(),
     CatalogView(),
+    SavedView(),
     ProfileView(),
   ];
 
@@ -82,6 +91,11 @@ class _MainViewState extends State<MainView> {
                 icon: Icon(Icons.menu_book_outlined),
                 selectedIcon: Icon(Icons.menu_book_rounded),
                 label: 'Jelajahi',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.bookmark_border_rounded),
+                selectedIcon: Icon(Icons.bookmark_rounded),
+                label: 'Tersimpan',
               ),
               NavigationDestination(
                 icon: Icon(Icons.person_outline_rounded),
