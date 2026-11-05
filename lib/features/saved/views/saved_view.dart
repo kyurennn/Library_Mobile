@@ -273,17 +273,6 @@ class _SavedViewState extends State<SavedView> {
             });
           },
         ),
-        IconButton(
-          icon: const Icon(Icons.menu, color: _textGrey, size: 24),
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Menu Tersimpan'),
-                duration: Duration(seconds: 1),
-              ),
-            );
-          },
-        ),
         const SizedBox(width: 4),
       ],
     );
