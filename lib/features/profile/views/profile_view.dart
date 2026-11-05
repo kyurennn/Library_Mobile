@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:library_mobile/app/config/profile_page.dart'; // Pastikan import ini ada
 
 // Halaman profil anggota perpustakaan
 class ProfileView extends StatelessWidget {
@@ -6,13 +7,6 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profil'),
-      ),
-      body: const Center(
-        child: Text('Page ini belum dibuat'),
-      ),
-    );
+    return const ProfilePage(); // Ganti isi body/Scaffold langsung jadi ProfilePage kamu!
   }
 }
