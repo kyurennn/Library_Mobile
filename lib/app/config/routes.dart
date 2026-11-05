@@ -6,6 +6,7 @@ import 'package:library_mobile/features/detail/views/detail_view.dart';
 import 'package:library_mobile/features/home/views/home_view.dart';
 import 'package:library_mobile/features/main/views/main_view.dart';
 import 'package:library_mobile/features/profile/views/profile_view.dart';
+import 'package:library_mobile/features/saved/views/saved_view.dart';
 
 // Definisi rute navigasi aplikasi
 class AppRoutes {
@@ -15,6 +16,7 @@ class AppRoutes {
   static const String login = '/login';
   static const String home = '/home';
   static const String catalog = '/catalog';
+  static const String saved = '/saved';
   static const String detail = '/detail';
   static const String profile = '/profile';
 
@@ -42,6 +44,12 @@ class AppRoutes {
       case catalog:
         return MaterialPageRoute(
           builder: (_) => const CatalogView(),
+          settings: settings,
+        );
+
+      case saved:
+        return MaterialPageRoute(
+          builder: (_) => const SavedView(),
           settings: settings,
         );
 
