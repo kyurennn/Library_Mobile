@@ -494,54 +494,26 @@ class _DetailViewState extends State<DetailView> {
           ),
         ),
         const SizedBox(height: 12),
-        Row(
-          children: [
-            Expanded(
-              flex: 3,
-              child: SizedBox(
-                height: 48,
-                child: ElevatedButton.icon(
-                  onPressed: () => _notify('Edit data buku'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _cardBorder,
-                    foregroundColor: Colors.white,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  icon: const Icon(Icons.edit_outlined, size: 18),
-                  label: const Text(
-                    'Edit data buku',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-                  ),
-                ),
+        // Tombol Kembali selebar tombol Baca E-book
+        SizedBox(
+          width: double.infinity,
+          height: 48,
+          child: OutlinedButton(
+            onPressed: () {
+              if (Navigator.canPop(context)) Navigator.pop(context);
+            },
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.white,
+              side: const BorderSide(color: _cardBorder),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
               ),
             ),
-            const SizedBox(width: 12),
-            Expanded(
-              flex: 2,
-              child: SizedBox(
-                height: 48,
-                child: OutlinedButton(
-                  onPressed: () {
-                    if (Navigator.canPop(context)) Navigator.pop(context);
-                  },
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    side: const BorderSide(color: _cardBorder),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text(
-                    'Kembali',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-                  ),
-                ),
-              ),
+            child: const Text(
+              'Kembali',
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
             ),
-          ],
+          ),
         ),
       ],
     );
