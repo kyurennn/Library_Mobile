@@ -3,6 +3,7 @@ import 'package:library_mobile/data/models/sample_model.dart';
 import 'package:library_mobile/features/auth/login_view.dart';
 import 'package:library_mobile/features/shared/catalog/views/catalog_view.dart';
 import 'package:library_mobile/features/shared/detail/views/detail_view.dart';
+import 'package:library_mobile/features/user/events/views/events_view.dart';
 import 'package:library_mobile/features/user/home/views/home_view.dart';
 import 'package:library_mobile/features/user/main/views/main_view.dart';
 import 'package:library_mobile/features/user/profile/views/profile_view.dart';
@@ -21,6 +22,7 @@ class AppRoutes {
   static const String detail = '/detail';
   static const String profile = '/profile';
   static const String reservation = '/reservation';
+  static const String events = '/events';
 
   // Handler rute bernama
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -71,6 +73,12 @@ class AppRoutes {
       case reservation:
         return MaterialPageRoute(
           builder: (_) => const ReservationView(),
+          settings: settings,
+        );
+
+      case events:
+        return MaterialPageRoute(
+          builder: (_) => const EventsView(),
           settings: settings,
         );
 

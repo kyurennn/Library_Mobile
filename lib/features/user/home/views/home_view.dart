@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:library_mobile/app/config/routes.dart';
+import 'package:library_mobile/data/dummy/event_dummy.dart';
+import 'package:library_mobile/data/models/event_model.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -13,30 +15,8 @@ class HomeView extends StatelessWidget {
   static const Color _gold = Color(0xFFFBBF24);
   static const Color _textGrey = Color(0xFF8E9BAE);
 
-  // Daftar agenda kabar & acara
-  static const List<_EventItem> _events = [
-    _EventItem(
-      month: 'MEI',
-      day: '18',
-      category: 'KLUB BUKU',
-      title: "Diskusi Novel 'Bumi' karya Tere Liye",
-      locationAndTime: 'Ruang Diskusi Komunitas • 10:00 WIB',
-    ),
-    _EventItem(
-      month: 'OCT',
-      day: '01',
-      category: 'KLUB BUKU',
-      title: 'Happy Halloween',
-      locationAndTime: 'Main Lobby • 14:00 WIB',
-    ),
-    _EventItem(
-      month: 'OCT',
-      day: '21',
-      category: 'KLUB BUKU',
-      title: 'English Debate Competition',
-      locationAndTime: 'Main Lobby • 12:00 WIB',
-    ),
-  ];
+  // Daftar agenda kabar & acara (data bersama dengan halaman Kabar & Acara)
+  static const List<EventItem> _events = EventDummy.events;
 
   // Menu pintasan layanan
   static const List<_ServiceItem> _services = [
@@ -241,7 +221,7 @@ class HomeView extends StatelessWidget {
               width: 48,
               height: 66,
               child: Image.asset(
-                'assets/images/Books/laskarPelangi.jpg',
+                'assets/images/books/laskarPelangi.jpg',
                 width: 48,
                 height: 66,
                 fit: BoxFit.cover,
@@ -500,7 +480,8 @@ class HomeView extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: () => _notify(context, 'Daftar Kabar & Acara'),
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(AppRoutes.events),
               style: TextButton.styleFrom(
                 padding: EdgeInsets.zero,
                 minimumSize: Size.zero,
@@ -643,21 +624,5 @@ class _ServiceItem {
     required this.icon,
     this.route,
     this.message,
-  });
-}
-
-class _EventItem {
-  final String month;
-  final String day;
-  final String category;
-  final String title;
-  final String locationAndTime;
-
-  const _EventItem({
-    required this.month,
-    required this.day,
-    required this.category,
-    required this.title,
-    required this.locationAndTime,
   });
 }
