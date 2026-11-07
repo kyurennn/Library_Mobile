@@ -141,31 +141,14 @@ class HomeView extends StatelessWidget {
             ],
           ),
         ),
-        Stack(
-          clipBehavior: Clip.none,
-          children: [
-            IconButton(
-              onPressed: () => _notify(context, 'Tidak ada notifikasi baru'),
-              icon: const Icon(
-                Icons.notifications_none_rounded,
-                color: _cyan,
-                size: 26,
-              ),
-              splashRadius: 22,
-            ),
-            Positioned(
-              top: 10,
-              right: 12,
-              child: Container(
-                width: 8,
-                height: 8,
-                decoration: const BoxDecoration(
-                  color: Color(0xFFFF3B30),
-                  shape: BoxShape.circle,
-                ),
-              ),
-            ),
-          ],
+        IconButton(
+          onPressed: () => _notify(context, 'Tidak ada notifikasi baru'),
+          icon: const Icon(
+            Icons.notifications_none_rounded,
+            color: _cyan,
+            size: 26,
+          ),
+          splashRadius: 22,
         ),
       ],
     );
