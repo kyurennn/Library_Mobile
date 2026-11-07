@@ -48,7 +48,7 @@ class HomeView extends StatelessWidget {
     _ServiceItem(
       label: 'Reservasi',
       icon: Icons.calendar_month_outlined,
-      message: 'Reservasi',
+      route: AppRoutes.reservation,
     ),
     _ServiceItem(
       label: 'Kembalikan',
@@ -241,7 +241,7 @@ class HomeView extends StatelessWidget {
               width: 48,
               height: 66,
               child: Image.asset(
-                'assets/images/laskarPelangi.jpg',
+                'assets/images/Books/laskarPelangi.jpg',
                 width: 48,
                 height: 66,
                 fit: BoxFit.cover,

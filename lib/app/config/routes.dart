@@ -6,6 +6,7 @@ import 'package:library_mobile/features/shared/detail/views/detail_view.dart';
 import 'package:library_mobile/features/user/home/views/home_view.dart';
 import 'package:library_mobile/features/user/main/views/main_view.dart';
 import 'package:library_mobile/features/user/profile/views/profile_view.dart';
+import 'package:library_mobile/features/user/reservation/views/reservation_view.dart';
 import 'package:library_mobile/features/user/saved/views/saved_view.dart';
 
 // Definisi rute navigasi aplikasi
@@ -19,6 +20,7 @@ class AppRoutes {
   static const String saved = '/saved';
   static const String detail = '/detail';
   static const String profile = '/profile';
+  static const String reservation = '/reservation';
 
   // Handler rute bernama
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -63,6 +65,12 @@ class AppRoutes {
       case profile:
         return MaterialPageRoute(
           builder: (_) => const ProfileView(),
+          settings: settings,
+        );
+
+      case reservation:
+        return MaterialPageRoute(
+          builder: (_) => const ReservationView(),
           settings: settings,
         );
 

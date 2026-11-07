@@ -69,7 +69,7 @@ class _SavedViewState extends State<SavedView> {
       category: 'FIKSI INDONESIA',
       publishedYear: 2005,
       pageCount: 529,
-      coverAsset: 'assets/images/laskarPelangi.jpg',
+      coverAsset: 'assets/images/Books/laskarPelangi.jpg',
       description: 'Kisah inspiratif tentang sepuluh anak di Belitung yang berjuang menuntut ilmu di tengah keterbatasan fasilitas sekolah.',
     ),
     SavedBook(
@@ -79,7 +79,7 @@ class _SavedViewState extends State<SavedView> {
       category: 'FIKSI INDONESIA',
       publishedYear: 2017,
       pageCount: 555,
-      coverAsset: null,
+      coverAsset: 'assets/images/Books/Book cover (1).png',
       description: 'Kisah persahabatan enam santri dari berbagai daerah di Indonesia yang menuntut ilmu di Pondok Madani.',
     ),
     SavedBook(
@@ -89,7 +89,7 @@ class _SavedViewState extends State<SavedView> {
       category: 'SELF-HELP BOOK',
       publishedYear: 2018,
       pageCount: 315,
-      coverAsset: null,
+      coverAsset: 'assets/images/Books/Book cover Atomic habtis.png',
       description: 'Perubahan kecil yang memberikan hasil luar biasa dalam membangun kebiasaan baik dan mematahkan kebiasaan buruk.',
     ),
     SavedBook(
@@ -99,7 +99,7 @@ class _SavedViewState extends State<SavedView> {
       category: 'SELF-HELP BOOK',
       publishedYear: 2020,
       pageCount: 255,
-      coverAsset: null,
+      coverAsset: 'assets/images/Books/Book cover Pyschology of money.png',
       description: 'Pelajaran abadi mengenai kekayaan, ketamakan, dan kebahagiaan dalam mengambil keputusan finansial.',
     ),
   ];

@@ -87,7 +87,7 @@ class _CatalogViewState extends State<CatalogView> {
     categoryDisplay: 'FIKSI INDONESIA',
     publishedYear: 2005,
     pageCount: 529,
-    coverAsset: 'assets/images/laskarPelangi.jpg',
+    coverAsset: 'assets/images/Books/laskarPelangi.jpg',
     availableText: '• 7 buku tersedia',
     borrowCount: 350,
     rating: 4.9,
@@ -105,7 +105,7 @@ class _CatalogViewState extends State<CatalogView> {
       categoryDisplay: 'Fiksi · 2017',
       publishedYear: 2017,
       pageCount: 420,
-      coverAsset: 'assets/images/Book cover.png',
+      coverAsset: 'assets/images/Books/Book cover.png',
       availableText: '• 3 buku tersedia',
       borrowCount: 320,
       description:
@@ -119,7 +119,7 @@ class _CatalogViewState extends State<CatalogView> {
       categoryDisplay: 'Fantasi · 2014',
       publishedYear: 2014,
       pageCount: 535,
-      coverAsset: 'assets/images/Book cover Bumi Manusia.png',
+      coverAsset: 'assets/images/Books/Book cover Bumi Manusia.png',
       availableText: '• 5 buku tersedia',
       borrowCount: 310,
       description:
@@ -133,7 +133,7 @@ class _CatalogViewState extends State<CatalogView> {
       categoryDisplay: 'Nonfiksi · 2018',
       publishedYear: 2018,
       pageCount: 320,
-      coverAsset: 'assets/images/Book cover Filosofi Teras.png',
+      coverAsset: 'assets/images/Books/Book cover Filosofi Teras.png',
       availableText: '• 2 buku tersedia',
       borrowCount: 295,
       description:
@@ -147,7 +147,7 @@ class _CatalogViewState extends State<CatalogView> {
       categoryDisplay: 'Fiksi · 2009',
       publishedYear: 2009,
       pageCount: 444,
-      coverAsset: 'assets/images/Book cover Perahu Kertas.png',
+      coverAsset: 'assets/images/Books/Book cover Perahu Kertas.png',
       availableText: '• E-book tersedia',
       borrowCount: 280,
       description:
@@ -187,7 +187,7 @@ class _CatalogViewState extends State<CatalogView> {
       categoryDisplay: 'Nonfiksi · 2018',
       publishedYear: 2018,
       pageCount: 315,
-      coverAsset: 'assets/images/Book cover Atomic habtis.png',
+      coverAsset: 'assets/images/Books/Book cover Atomic habits.png',
       availableText: '• 6 buku tersedia',
       borrowCount: 275,
       description:
@@ -214,7 +214,7 @@ class _CatalogViewState extends State<CatalogView> {
       categoryDisplay: 'Nonfiksi · 2020',
       publishedYear: 2020,
       pageCount: 255,
-      coverAsset: 'assets/images/Book cover Pyschology of money.png',
+      coverAsset: 'assets/images/Books/Book cover Pyschology of money.png',
       availableText: '• 4 buku tersedia',
       borrowCount: 270,
       description:
