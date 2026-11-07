@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:library_mobile/data/models/sample_model.dart';
-import 'package:library_mobile/features/auth/views/login_view.dart';
-import 'package:library_mobile/features/catalog/views/catalog_view.dart';
-import 'package:library_mobile/features/detail/views/detail_view.dart';
-import 'package:library_mobile/features/home/views/home_view.dart';
-import 'package:library_mobile/features/main/views/main_view.dart';
-import 'package:library_mobile/features/profile/views/profile_view.dart';
-import 'package:library_mobile/features/saved/views/saved_view.dart';
+import 'package:library_mobile/features/auth/login_view.dart';
+import 'package:library_mobile/features/shared/catalog/views/catalog_view.dart';
+import 'package:library_mobile/features/shared/detail/views/detail_view.dart';
+import 'package:library_mobile/features/user/home/views/home_view.dart';
+import 'package:library_mobile/features/user/main/views/main_view.dart';
+import 'package:library_mobile/features/user/profile/views/profile_view.dart';
+import 'package:library_mobile/features/user/saved/views/saved_view.dart';
 
 // Definisi rute navigasi aplikasi
 class AppRoutes {

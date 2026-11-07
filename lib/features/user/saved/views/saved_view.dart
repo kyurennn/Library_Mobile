@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:library_mobile/data/models/sample_model.dart';
-import 'package:library_mobile/features/detail/views/detail_view.dart';
+import 'package:library_mobile/features/shared/detail/views/detail_view.dart';
 
 // Model data buku tersimpan
 class SavedBook {
