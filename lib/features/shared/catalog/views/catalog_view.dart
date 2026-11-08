@@ -709,7 +709,7 @@ class _CatalogViewState extends State<CatalogView> {
       return Image.asset(
         book.coverAsset!,
         fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) => _buildPlaceholder(book),
+        errorBuilder: (_, _, _) => _buildPlaceholder(book),
       );
     }
     return _buildPlaceholder(book);
