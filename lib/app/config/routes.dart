@@ -10,6 +10,7 @@ import 'package:library_mobile/features/user/home/views/home_view.dart';
 import 'package:library_mobile/features/user/main/views/main_view.dart';
 import 'package:library_mobile/features/user/profile/views/reading_history_view.dart';
 import 'package:library_mobile/features/user/reservation/views/reservation_view.dart';
+import 'package:library_mobile/features/user/rooms/views/rooms_view.dart';
 import 'package:library_mobile/features/user/saved/views/saved_view.dart';
 
 // Definisi rute navigasi aplikasi
@@ -23,6 +24,7 @@ class AppRoutes {
   static const String saved = '/saved';
   static const String detail = '/detail';
   static const String profile = '/profile';
+  static const String rooms = '/rooms';
   static const String reservation = '/reservation';
   static const String events = '/events';
   static const String eventDetail = '/event-detail';
@@ -71,6 +73,12 @@ class AppRoutes {
       case profile:
         return MaterialPageRoute(
           builder: (_) => const MainView(initialIndex: 3),
+          settings: settings,
+        );
+
+      case rooms:
+        return MaterialPageRoute(
+          builder: (_) => const RoomsView(),
           settings: settings,
         );
 

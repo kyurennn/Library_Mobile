@@ -26,7 +26,7 @@ class HomeView extends StatelessWidget {
     _ServiceItem(
       label: 'Ruangan',
       icon: Icons.meeting_room_outlined,
-      message: 'Ruangan',
+      route: AppRoutes.rooms,
     ),
     _ServiceItem(
       label: 'Reservasi',

@@ -53,5 +53,38 @@ class RoomDummy {
         RoomSession(start: '16:30', end: '18:30', label: 'Sesi Sore'),
       ],
     ),
+    Room(
+      id: 'silent-box-1',
+      name: 'Silent Box',
+      category: 'Silent Box',
+      location: 'Lantai 4 · Sayap Barat',
+      imageAsset: 'assets/images/Rooms/SilentBox.jpg',
+      facilities: ['Soundproof', 'Power Charge', 'Ring Light', 'Sofa'],
+      minCapacity: 1,
+      maxCapacity: 2,
+      sessionHours: 2,
+      maxQuotaHours: 2,
+      sessions: [
+        RoomSession(start: '09:00', end: '11:00', label: 'Sesi Pagi'),
+        RoomSession(start: '13:00', end: '15:00', label: 'Sesi Siang'),
+        RoomSession(start: '15:30', end: '17:30', label: 'Sesi Sore'),
+      ],
+    ),
+    Room(
+      id: 'silent-box-2',
+      name: 'Silent Box',
+      category: 'Silent Box',
+      location: 'Lantai 4 · Sayap Barat',
+      imageAsset: 'assets/images/Rooms/SilentBox.jpg',
+      facilities: ['Soundproof', 'Power Charge', 'Ring Light', 'Sofa'],
+      minCapacity: 1,
+      maxCapacity: 2,
+      sessionHours: 2,
+      maxQuotaHours: 2,
+      sessions: [
+        RoomSession(start: '09:00', end: '11:00', label: 'Sesi Pagi'),
+        RoomSession(start: '13:00', end: '15:00', label: 'Sesi Siang'),
+      ],
+    ),
   ];
 }
