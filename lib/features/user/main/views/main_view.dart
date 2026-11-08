@@ -10,6 +10,18 @@ class MainView extends StatefulWidget {
   final int initialIndex;
   const MainView({super.key, this.initialIndex = 0});
 
+  static void switchTab(BuildContext context, int index) {
+    final state = context.findAncestorStateOfType<_MainViewState>();
+    if (state != null) {
+      state._onDestinationSelected(index);
+    } else {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => MainView(initialIndex: index)),
+        (route) => false,
+      );
+    }
+  }
+
   @override
   State<MainView> createState() => _MainViewState();
 }
@@ -23,13 +35,6 @@ class _MainViewState extends State<MainView> {
     _currentIndex = widget.initialIndex;
   }
 
-  final List<Widget> _views = const [
-    HomeView(),
-    CatalogView(),
-    SavedView(),
-    ProfileView(),
-  ];
-
   void _onDestinationSelected(int index) {
     if (_currentIndex != index) {
       setState(() => _currentIndex = index);
@@ -38,9 +43,20 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
+    final views = [
+      HomeView(
+        onProfileTap: () => _onDestinationSelected(3),
+      ),
+      CatalogView(
+        onBackToHome: () => _onDestinationSelected(0),
+      ),
+      const SavedView(),
+      const ProfileView(),
+    ];
+
     return Scaffold(
       backgroundColor: const Color(0xFF0B132B),
-      body: IndexedStack(index: _currentIndex, children: _views),
+      body: IndexedStack(index: _currentIndex, children: views),
       bottomNavigationBar: UserBottomNav(
         selectedIndex: _currentIndex,
         onSelected: _onDestinationSelected,

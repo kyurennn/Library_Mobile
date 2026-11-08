@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:library_mobile/app/config/routes.dart';
 import 'package:library_mobile/data/dummy/event_dummy.dart';
 import 'package:library_mobile/data/models/event_model.dart';
+import 'package:library_mobile/features/user/main/views/main_view.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  final VoidCallback? onProfileTap;
+
+  const HomeView({super.key, this.onProfileTap});
 
   // Skema warna dark mode
   static const Color _bg = Color(0xFF0B132B);
@@ -75,23 +78,40 @@ class HomeView extends StatelessWidget {
     );
   }
 
+  void _handleProfileTap(BuildContext context) {
+    if (onProfileTap != null) {
+      onProfileTap!();
+    } else {
+      MainView.switchTab(context, 3);
+    }
+  }
+
   // Header: avatar pengguna, nama, ID kartu, dan notifikasi
   Widget _buildHeader(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: 48,
-          height: 48,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: _cyan.withValues(alpha: 0.5), width: 1.8),
-          ),
-          child: ClipOval(
-            child: Image.asset(
-              'assets/images/profile_avatar.jpg',
-              fit: BoxFit.cover,
-              errorBuilder: (_, _, _) =>
-                  const Icon(Icons.person, color: Colors.white, size: 26),
+        GestureDetector(
+          onTap: () => _handleProfileTap(context),
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: _cyan.withValues(alpha: 0.5),
+                  width: 1.8,
+                ),
+              ),
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/images/profile_avatar.jpg',
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, _, _) =>
+                      const Icon(Icons.person, color: Colors.white, size: 26),
+                ),
+              ),
             ),
           ),
         ),

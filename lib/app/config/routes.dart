@@ -8,7 +8,6 @@ import 'package:library_mobile/features/user/events/views/event_detail_view.dart
 import 'package:library_mobile/features/user/events/views/events_view.dart';
 import 'package:library_mobile/features/user/home/views/home_view.dart';
 import 'package:library_mobile/features/user/main/views/main_view.dart';
-import 'package:library_mobile/features/user/profile/views/profile_view.dart';
 import 'package:library_mobile/features/user/reservation/views/reservation_view.dart';
 import 'package:library_mobile/features/user/saved/views/saved_view.dart';
 
@@ -69,7 +68,7 @@ class AppRoutes {
 
       case profile:
         return MaterialPageRoute(
-          builder: (_) => const ProfileView(),
+          builder: (_) => const MainView(initialIndex: 3),
           settings: settings,
         );
 
@@ -96,9 +95,7 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (_) => Scaffold(
             appBar: AppBar(title: const Text('Halaman Tidak Ditemukan')),
-            body: Center(
-              child: Text('Rute ${settings.name} tidak terdaftar.'),
-            ),
+            body: Center(child: Text('Rute ${settings.name} tidak terdaftar.')),
           ),
         );
     }
