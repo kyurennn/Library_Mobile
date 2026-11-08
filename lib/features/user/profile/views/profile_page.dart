@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:library_mobile/app/config/routes.dart';
 import 'package:library_mobile/features/user/profile/views/library_location_detail_view.dart';
 import 'package:library_mobile/features/user/profile/views/reading_history_view.dart';
 
@@ -20,7 +21,9 @@ class ProfilePage extends StatelessWidget {
                 children: [
                   const CircleAvatar(
                     radius: 24,
-                    backgroundImage: AssetImage('assets/images/profile_avatar.jpg'),
+                    backgroundImage: AssetImage(
+                      'assets/images/profile_avatar.jpg',
+                    ),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
@@ -38,16 +41,16 @@ class ProfilePage extends StatelessWidget {
                         SizedBox(height: 2),
                         Text(
                           'Library Card : #103022400147',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 12,
-                          ),
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
                         ),
                       ],
                     ),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.notifications_outlined, color: Colors.blueAccent),
+                    icon: const Icon(
+                      Icons.notifications_outlined,
+                      color: Colors.blueAccent,
+                    ),
                     onPressed: () {},
                   ),
                 ],
@@ -57,7 +60,11 @@ class ProfilePage extends StatelessWidget {
               // Peminjaman Section
               const Text(
                 'Peminjaman',
-                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 12),
               _buildMenuCard(
@@ -80,7 +87,11 @@ class ProfilePage extends StatelessWidget {
               // Koleksi & Aktivitas Section
               const Text(
                 'Koleksi & Aktivitas',
-                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 12),
               Row(
@@ -106,6 +117,9 @@ class ProfilePage extends StatelessWidget {
                       icon: Icons.bookmark_outline,
                       title: 'Buku Tersimpan',
                       subtitle: '8 daftar bacaan',
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.saved);
+                      },
                     ),
                   ),
                 ],
@@ -149,10 +163,12 @@ class ProfilePage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (_) => const LibraryLocationDetailView(
-                        name: 'Perpustakaan Umum Bandung - Taman Baca Cikapundung',
+                        name:
+                            'Perpustakaan Umum Bandung - Taman Baca Cikapundung',
                         subtitle: 'Taman Baca Cikapundung',
                         code: '3204122D00000002',
-                        address: 'Jl. Cikapundung Timur No. 10 Bandung Indonesia',
+                        address:
+                            'Jl. Cikapundung Timur No. 10 Bandung Indonesia',
                         openingHours: 'Selasa – Minggu • 09.00 – 18.00 WIB',
                         phone: '+62 33 0000 0000',
                         email: 'layanan@example.id',
@@ -202,7 +218,7 @@ class ProfilePage extends StatelessWidget {
                   );
                 },
               ),
-              const SizedBox(height: 28),
+              const SizedBox(height: 24),
 
               // Tombol Keluar
               Center(
@@ -211,13 +227,16 @@ class ProfilePage extends StatelessWidget {
                   icon: const Icon(Icons.logout, color: Colors.redAccent),
                   label: const Text(
                     'Keluar dari Akun',
-                    style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      color: Colors.redAccent,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
               const SizedBox(height: 12),
 
-              // Footer App Version
+              // Footer Info Versi
               const Center(
                 child: Text(
                   'Athenaeum Digital v2.4.0 • OpenLibrary Connect',
@@ -255,12 +274,29 @@ class ProfilePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14)),
-                    Text(trailingInfo, style: TextStyle(color: trailingColor, fontSize: 12, fontWeight: FontWeight.bold)),
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
+                    ),
+                    Text(
+                      trailingInfo,
+                      style: TextStyle(
+                        color: trailingColor,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 2),
-                Text(subtitle, style: const TextStyle(color: Colors.grey, fontSize: 12)),
+                Text(
+                  subtitle,
+                  style: const TextStyle(color: Colors.grey, fontSize: 12),
+                ),
               ],
             ),
           ),
@@ -299,9 +335,19 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 12),
-              Text(title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13)),
+              Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                ),
+              ),
               const SizedBox(height: 2),
-              Text(subtitle, style: const TextStyle(color: Colors.grey, fontSize: 11)),
+              Text(
+                subtitle,
+                style: const TextStyle(color: Colors.grey, fontSize: 11),
+              ),
             ],
           ),
         ),
