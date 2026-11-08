@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:library_mobile/app/config/routes.dart';
+import 'package:library_mobile/core/utils/formatters.dart';
+import 'package:library_mobile/data/dummy/borrowing_dummy.dart';
+import 'package:library_mobile/features/user/profile/views/borrowing_list_page.dart';
+import 'package:library_mobile/features/user/profile/views/fine_page.dart';
 import 'package:library_mobile/features/user/profile/views/library_location_detail_view.dart';
 import 'package:library_mobile/features/user/profile/views/reading_history_view.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
   @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  // Buka halaman lalu refresh ringkasan saat kembali (data bisa berubah)
+  void _open(Widget page) {
+    Navigator.push(context, MaterialPageRoute(builder: (_) => page))
+        .then((_) => setState(() {}));
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final activeCount = BorrowingDummy.activeCount;
+    final outstandingFine = BorrowingDummy.totalOutstandingFine;
+
     return Scaffold(
       backgroundColor: const Color(0xFF0F172A), // Warna latar belakang gelap
       body: SafeArea(
@@ -71,16 +89,21 @@ class ProfilePage extends StatelessWidget {
                 icon: Icons.menu_book,
                 title: 'Daftar Peminjaman',
                 subtitle: 'Daftar peminjaman buku yang...',
-                trailingInfo: '1 Aktif',
+                trailingInfo: '$activeCount Aktif',
                 trailingColor: Colors.blue,
+                onTap: () => _open(const BorrowingListPage()),
               ),
               const SizedBox(height: 8),
               _buildMenuCard(
                 icon: Icons.account_balance_wallet_outlined,
                 title: 'Denda',
                 subtitle: 'Denda yang sudah dan harus...',
-                trailingInfo: 'Rp 0 (Lunas)',
-                trailingColor: Colors.green,
+                trailingInfo: outstandingFine == 0
+                    ? 'Rp 0 (Lunas)'
+                    : AppFormatters.formatCurrency(outstandingFine),
+                trailingColor:
+                    outstandingFine == 0 ? Colors.green : Colors.redAccent,
+                onTap: () => _open(const FinePage()),
               ),
               const SizedBox(height: 24),
 
@@ -256,53 +279,61 @@ class ProfilePage extends StatelessWidget {
     required String subtitle,
     required String trailingInfo,
     required Color trailingColor,
+    VoidCallback? onTap,
   }) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1E293B),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
         borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: Colors.white70, size: 24),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: const Color(0xFF1E293B),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              Icon(icon, color: Colors.white70, size: 24),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          title,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                        ),
+                        Text(
+                          trailingInfo,
+                          style: TextStyle(
+                            color: trailingColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
+                    const SizedBox(height: 2),
                     Text(
-                      trailingInfo,
-                      style: TextStyle(
-                        color: trailingColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      subtitle,
+                      style: const TextStyle(color: Colors.grey, fontSize: 12),
                     ),
                   ],
                 ),
-                const SizedBox(height: 2),
-                Text(
-                  subtitle,
-                  style: const TextStyle(color: Colors.grey, fontSize: 12),
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(width: 8),
+              const Icon(Icons.chevron_right, color: Colors.grey, size: 20),
+            ],
           ),
-          const SizedBox(width: 8),
-          const Icon(Icons.chevron_right, color: Colors.grey, size: 20),
-        ],
+        ),
       ),
     );
   }
