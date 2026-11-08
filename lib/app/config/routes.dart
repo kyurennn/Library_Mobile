@@ -5,6 +5,7 @@ import 'package:library_mobile/features/catalog/views/catalog_view.dart';
 import 'package:library_mobile/features/detail/views/detail_view.dart';
 import 'package:library_mobile/features/home/views/home_view.dart';
 import 'package:library_mobile/features/main/views/main_view.dart';
+import 'package:library_mobile/features/notification/views/notification_view.dart';
 import 'package:library_mobile/features/profile/views/profile_view.dart';
 import 'package:library_mobile/features/saved/views/saved_view.dart';
 
@@ -19,6 +20,7 @@ class AppRoutes {
   static const String saved = '/saved';
   static const String detail = '/detail';
   static const String profile = '/profile';
+  static const String notification = '/notification';
 
   // Handler rute bernama
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -63,6 +65,12 @@ class AppRoutes {
       case profile:
         return MaterialPageRoute(
           builder: (_) => const ProfileView(),
+          settings: settings,
+        );
+
+      case notification:
+        return MaterialPageRoute(
+          builder: (_) => const NotificationView(),
           settings: settings,
         );
 

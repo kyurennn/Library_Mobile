@@ -1,0 +1,12 @@
+{
+  "name": "library-mobile",
+  "version": "1.0.0",
+  "description": "Library Mobile Flutter Application",
+  "scripts": {
+    "start": "flutter run",
+    "dev": "flutter run",
+    "windows": "flutter run -d windows",
+    "chrome": "flutter run -d chrome"
+  }
+}
+

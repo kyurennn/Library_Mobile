@@ -147,7 +147,8 @@ class HomeView extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             IconButton(
-              onPressed: () => _notify(context, 'Tidak ada notifikasi baru'),
+              onPressed: () =>
+                  Navigator.pushNamed(context, AppRoutes.notification),
               icon: const Icon(
                 Icons.notifications_none_rounded,
                 color: _cyan,
