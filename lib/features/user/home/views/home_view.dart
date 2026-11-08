@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:library_mobile/app/config/routes.dart';
-<<<<<<< Updated upstream:lib/features/home/views/home_view.dart
-=======
 import 'package:library_mobile/data/dummy/event_dummy.dart';
 import 'package:library_mobile/data/models/event_model.dart';
 import 'package:library_mobile/features/user/main/views/main_view.dart';
->>>>>>> Stashed changes:lib/features/user/home/views/home_view.dart
 
 class HomeView extends StatelessWidget {
   final VoidCallback? onProfileTap;
@@ -21,30 +18,8 @@ class HomeView extends StatelessWidget {
   static const Color _gold = Color(0xFFFBBF24);
   static const Color _textGrey = Color(0xFF8E9BAE);
 
-  // Daftar agenda kabar & acara
-  static const List<_EventItem> _events = [
-    _EventItem(
-      month: 'MEI',
-      day: '18',
-      category: 'KLUB BUKU',
-      title: "Diskusi Novel 'Bumi' karya Tere Liye",
-      locationAndTime: 'Ruang Diskusi Komunitas • 10:00 WIB',
-    ),
-    _EventItem(
-      month: 'OCT',
-      day: '01',
-      category: 'KLUB BUKU',
-      title: 'Happy Halloween',
-      locationAndTime: 'Main Lobby • 14:00 WIB',
-    ),
-    _EventItem(
-      month: 'OCT',
-      day: '21',
-      category: 'KLUB BUKU',
-      title: 'English Debate Competition',
-      locationAndTime: 'Main Lobby • 12:00 WIB',
-    ),
-  ];
+  // Daftar agenda kabar & acara (data bersama dengan halaman Kabar & Acara)
+  static const List<EventItem> _events = EventDummy.events;
 
   // Menu pintasan layanan
   static const List<_ServiceItem> _services = [
@@ -56,7 +31,7 @@ class HomeView extends StatelessWidget {
     _ServiceItem(
       label: 'Reservasi',
       icon: Icons.calendar_month_outlined,
-      message: 'Reservasi',
+      route: AppRoutes.reservation,
     ),
     _ServiceItem(
       label: 'Kembalikan',
@@ -266,7 +241,7 @@ class HomeView extends StatelessWidget {
               width: 48,
               height: 66,
               child: Image.asset(
-                'assets/images/laskarPelangi.jpg',
+                'assets/images/Books/laskarPelangi.jpg',
                 width: 48,
                 height: 66,
                 fit: BoxFit.cover,
@@ -525,7 +500,8 @@ class HomeView extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: () => _notify(context, 'Daftar Kabar & Acara'),
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(AppRoutes.events),
               style: TextButton.styleFrom(
                 padding: EdgeInsets.zero,
                 minimumSize: Size.zero,
@@ -551,7 +527,9 @@ class HomeView extends StatelessWidget {
           itemBuilder: (context, index) {
             final event = _events[index];
             return InkWell(
-              onTap: () => _notify(context, event.title),
+              onTap: () => Navigator.of(
+                context,
+              ).pushNamed(AppRoutes.eventDetail, arguments: event),
               borderRadius: BorderRadius.circular(14),
               child: Container(
                 padding: const EdgeInsets.all(12),
@@ -668,21 +646,5 @@ class _ServiceItem {
     required this.icon,
     this.route,
     this.message,
-  });
-}
-
-class _EventItem {
-  final String month;
-  final String day;
-  final String category;
-  final String title;
-  final String locationAndTime;
-
-  const _EventItem({
-    required this.month,
-    required this.day,
-    required this.category,
-    required this.title,
-    required this.locationAndTime,
   });
 }

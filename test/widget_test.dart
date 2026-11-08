@@ -10,4 +10,13 @@ void main() {
     // Verifikasi aplikasi berhasil memuat tab navigasi Beranda
     expect(find.text('Beranda'), findsWidgets);
   });
+
+  testWidgets('App displays Tersimpan navigation destination',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const App());
+    await tester.pumpAndSettle();
+
+    // Verifikasi menu Tersimpan tersedia pada bottom navigation
+    expect(find.text('Tersimpan'), findsWidgets);
+  });
 }
