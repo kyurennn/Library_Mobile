@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:library_mobile/data/models/sample_model.dart';
+<<<<<<< Updated upstream
 import 'package:library_mobile/features/auth/views/login_view.dart';
 import 'package:library_mobile/features/catalog/views/catalog_view.dart';
 import 'package:library_mobile/features/detail/views/detail_view.dart';
 import 'package:library_mobile/features/home/views/home_view.dart';
 import 'package:library_mobile/features/main/views/main_view.dart';
 import 'package:library_mobile/features/profile/views/profile_view.dart';
+=======
+import 'package:library_mobile/features/auth/login_view.dart';
+import 'package:library_mobile/features/shared/catalog/views/catalog_view.dart';
+import 'package:library_mobile/features/shared/detail/views/detail_view.dart';
+import 'package:library_mobile/features/user/events/views/event_detail_view.dart';
+import 'package:library_mobile/features/user/events/views/events_view.dart';
+import 'package:library_mobile/features/user/home/views/home_view.dart';
+import 'package:library_mobile/features/user/main/views/main_view.dart';
+import 'package:library_mobile/features/user/reservation/views/reservation_view.dart';
+import 'package:library_mobile/features/user/saved/views/saved_view.dart';
+>>>>>>> Stashed changes
 
 // Definisi rute navigasi aplikasi
 class AppRoutes {
@@ -54,7 +66,7 @@ class AppRoutes {
 
       case profile:
         return MaterialPageRoute(
-          builder: (_) => const ProfileView(),
+          builder: (_) => const MainView(initialIndex: 3),
           settings: settings,
         );
 
