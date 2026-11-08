@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:library_mobile/features/user/profile/views/reading_history_view.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -88,6 +89,14 @@ class ProfilePage extends StatelessWidget {
                       icon: Icons.history,
                       title: 'Riwayat Baca',
                       subtitle: '14 judul selesai',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const ReadingHistoryView(),
+                          ),
+                        );
+                      },
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -203,28 +212,40 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildSmallCard({required IconData icon, required String title, required String subtitle}) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1E293B),
+  Widget _buildSmallCard({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    VoidCallback? onTap,
+  }) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
         borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: const Color(0xFF1E293B),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(icon, color: Colors.white70, size: 22),
-              const Icon(Icons.chevron_right, color: Colors.grey, size: 18),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(icon, color: Colors.white70, size: 22),
+                  const Icon(Icons.chevron_right, color: Colors.grey, size: 18),
+                ],
+              ),
+              const SizedBox(height: 12),
+              Text(title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13)),
+              const SizedBox(height: 2),
+              Text(subtitle, style: const TextStyle(color: Colors.grey, fontSize: 11)),
             ],
           ),
-          const SizedBox(height: 12),
-          Text(title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13)),
-          const SizedBox(height: 2),
-          Text(subtitle, style: const TextStyle(color: Colors.grey, fontSize: 11)),
-        ],
+        ),
       ),
     );
   }

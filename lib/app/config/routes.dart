@@ -8,6 +8,7 @@ import 'package:library_mobile/features/user/events/views/event_detail_view.dart
 import 'package:library_mobile/features/user/events/views/events_view.dart';
 import 'package:library_mobile/features/user/home/views/home_view.dart';
 import 'package:library_mobile/features/user/main/views/main_view.dart';
+import 'package:library_mobile/features/user/profile/views/reading_history_view.dart';
 import 'package:library_mobile/features/user/reservation/views/reservation_view.dart';
 import 'package:library_mobile/features/user/saved/views/saved_view.dart';
 
@@ -25,6 +26,7 @@ class AppRoutes {
   static const String reservation = '/reservation';
   static const String events = '/events';
   static const String eventDetail = '/event-detail';
+  static const String readingHistory = '/reading-history';
 
   // Handler rute bernama
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -88,6 +90,12 @@ class AppRoutes {
         final event = settings.arguments as EventItem?;
         return MaterialPageRoute(
           builder: (_) => EventDetailView(event: event),
+          settings: settings,
+        );
+
+      case readingHistory:
+        return MaterialPageRoute(
+          builder: (_) => const ReadingHistoryView(),
           settings: settings,
         );
 
