@@ -10,7 +10,10 @@ import 'package:library_mobile/features/user/home/views/home_view.dart';
 import 'package:library_mobile/features/user/main/views/main_view.dart';
 import 'package:library_mobile/features/user/map/views/map_view.dart';
 import 'package:library_mobile/features/user/profile/views/profile_view.dart';
+import 'package:library_mobile/features/user/profile/views/library_location_detail_view.dart';
+import 'package:library_mobile/features/user/profile/views/reading_history_view.dart';
 import 'package:library_mobile/features/user/reservation/views/reservation_view.dart';
+import 'package:library_mobile/features/user/rooms/views/rooms_view.dart';
 import 'package:library_mobile/features/user/saved/views/saved_view.dart';
 
 class AppRoutes {
@@ -23,10 +26,13 @@ class AppRoutes {
   static const String saved = '/saved';
   static const String detail = '/detail';
   static const String profile = '/profile';
+  static const String rooms = '/rooms';
   static const String reservation = '/reservation';
   static const String events = '/events';
   static const String eventDetail = '/event-detail';
   static const String map = '/map';
+  static const String readingHistory = '/reading-history';
+  static const String locationDetail = '/location-detail';
 
   // Handler rute bernama
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -70,7 +76,13 @@ class AppRoutes {
 
       case profile:
         return MaterialPageRoute(
-          builder: (_) => const ProfileView(),
+          builder: (_) => const MainView(initialIndex: 3),
+          settings: settings,
+        );
+
+      case rooms:
+        return MaterialPageRoute(
+          builder: (_) => const RoomsView(),
           settings: settings,
         );
 
@@ -91,11 +103,22 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (_) => EventDetailView(event: event),
           settings: settings,
+          
         );
-
-      case map:
+        case map:
         return MaterialPageRoute(
           builder: (_) => const MapView(),
+          settings: settings,
+        );
+        case readingHistory:
+        return MaterialPageRoute(
+          builder: (_) => const ReadingHistoryView(),
+          settings: settings,
+        );
+
+      case locationDetail:
+        return MaterialPageRoute(
+          builder: (_) => const LibraryLocationDetailView(),
           settings: settings,
         );
 
@@ -103,9 +126,7 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (_) => Scaffold(
             appBar: AppBar(title: const Text('Halaman Tidak Ditemukan')),
-            body: Center(
-              child: Text('Rute ${settings.name} tidak terdaftar.'),
-            ),
+            body: Center(child: Text('Rute ${settings.name} tidak terdaftar.')),
           ),
         );
     }

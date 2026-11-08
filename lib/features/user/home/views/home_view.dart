@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:library_mobile/app/config/routes.dart';
 import 'package:library_mobile/data/dummy/event_dummy.dart';
 import 'package:library_mobile/data/models/event_model.dart';
+import 'package:library_mobile/features/user/main/views/main_view.dart';
 
 class HomeView extends StatelessWidget {
   // Dipanggil saat foto profil ditekan (mis. pindah ke tab Akun)
@@ -26,7 +27,7 @@ class HomeView extends StatelessWidget {
     _ServiceItem(
       label: 'Ruangan',
       icon: Icons.meeting_room_outlined,
-      message: 'Ruangan',
+      route: AppRoutes.rooms,
     ),
     _ServiceItem(
       label: 'Reservasi',
@@ -78,66 +79,42 @@ class HomeView extends StatelessWidget {
     );
   }
 
+  void _handleProfileTap(BuildContext context) {
+    if (onProfileTap != null) {
+      onProfileTap!();
+    } else {
+      MainView.switchTab(context, 3);
+    }
+  }
+
   // Header: avatar pengguna, nama, ID kartu, dan notifikasi
   Widget _buildHeader(BuildContext context) {
     return Row(
       children: [
-        GestureDetector(
-          onTap: onProfileTap,
-          child: Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: _cyan.withValues(alpha: 0.5),
-                width: 1.8,
-              ),
-            ),
-            child: ClipOval(
-              child: Image.asset(
-                'assets/images/profile_avatar.jpg',
-                fit: BoxFit.cover,
-                errorBuilder: (_, _, _) =>
-                    const Icon(Icons.person, color: Colors.white, size: 26),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(width: 12),
-        const Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Hi, Kane!',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.2,
+                GestureDetector(
+          onTap: () => _handleProfileTap(context),
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: _cyan.withValues(alpha: 0.5),
+                  width: 1.8,
                 ),
               ),
-              SizedBox(height: 2),
-              Text(
-                'Library Card : #103022400141',
-                style: TextStyle(
-                  color: _textGrey,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/images/profile_avatar.jpg',
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, _, _) =>
+                      const Icon(Icons.person, color: Colors.white, size: 26),
                 ),
               ),
-            ],
+            ),
           ),
-        ),
-        IconButton(
-          onPressed: () => _notify(context, 'Tidak ada notifikasi baru'),
-          icon: const Icon(
-            Icons.notifications_none_rounded,
-            color: _cyan,
-            size: 26,
-          ),
-          splashRadius: 22,
         ),
       ],
     );
