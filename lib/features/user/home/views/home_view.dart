@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:library_mobile/app/config/routes.dart';
+import 'package:library_mobile/data/dummy/event_dummy.dart';
+import 'package:library_mobile/data/models/event_model.dart';
+import 'package:library_mobile/features/user/main/views/main_view.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  final VoidCallback? onProfileTap;
+
+  const HomeView({super.key, this.onProfileTap});
 
   // Skema warna dark mode
   static const Color _bg = Color(0xFF0B132B);
@@ -13,30 +18,8 @@ class HomeView extends StatelessWidget {
   static const Color _gold = Color(0xFFFBBF24);
   static const Color _textGrey = Color(0xFF8E9BAE);
 
-  // Daftar agenda kabar & acara
-  static const List<_EventItem> _events = [
-    _EventItem(
-      month: 'MEI',
-      day: '18',
-      category: 'KLUB BUKU',
-      title: "Diskusi Novel 'Bumi' karya Tere Liye",
-      locationAndTime: 'Ruang Diskusi Komunitas • 10:00 WIB',
-    ),
-    _EventItem(
-      month: 'OCT',
-      day: '01',
-      category: 'KLUB BUKU',
-      title: 'Happy Halloween',
-      locationAndTime: 'Main Lobby • 14:00 WIB',
-    ),
-    _EventItem(
-      month: 'OCT',
-      day: '21',
-      category: 'KLUB BUKU',
-      title: 'English Debate Competition',
-      locationAndTime: 'Main Lobby • 12:00 WIB',
-    ),
-  ];
+  // Daftar agenda kabar & acara (data bersama dengan halaman Kabar & Acara)
+  static const List<EventItem> _events = EventDummy.events;
 
   // Menu pintasan layanan
   static const List<_ServiceItem> _services = [
@@ -48,7 +31,7 @@ class HomeView extends StatelessWidget {
     _ServiceItem(
       label: 'Reservasi',
       icon: Icons.calendar_month_outlined,
-      message: 'Reservasi',
+      route: AppRoutes.reservation,
     ),
     _ServiceItem(
       label: 'Kembalikan',
@@ -95,23 +78,40 @@ class HomeView extends StatelessWidget {
     );
   }
 
+  void _handleProfileTap(BuildContext context) {
+    if (onProfileTap != null) {
+      onProfileTap!();
+    } else {
+      MainView.switchTab(context, 3);
+    }
+  }
+
   // Header: avatar pengguna, nama, ID kartu, dan notifikasi
   Widget _buildHeader(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: 48,
-          height: 48,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: _cyan.withValues(alpha: 0.5), width: 1.8),
-          ),
-          child: ClipOval(
-            child: Image.asset(
-              'assets/images/profile_avatar.jpg',
-              fit: BoxFit.cover,
-              errorBuilder: (_, _, _) =>
-                  const Icon(Icons.person, color: Colors.white, size: 26),
+        GestureDetector(
+          onTap: () => _handleProfileTap(context),
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: _cyan.withValues(alpha: 0.5),
+                  width: 1.8,
+                ),
+              ),
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/images/profile_avatar.jpg',
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, _, _) =>
+                      const Icon(Icons.person, color: Colors.white, size: 26),
+                ),
+              ),
             ),
           ),
         ),
@@ -141,31 +141,14 @@ class HomeView extends StatelessWidget {
             ],
           ),
         ),
-        Stack(
-          clipBehavior: Clip.none,
-          children: [
-            IconButton(
-              onPressed: () => _notify(context, 'Tidak ada notifikasi baru'),
-              icon: const Icon(
-                Icons.notifications_none_rounded,
-                color: _cyan,
-                size: 26,
-              ),
-              splashRadius: 22,
-            ),
-            Positioned(
-              top: 10,
-              right: 12,
-              child: Container(
-                width: 8,
-                height: 8,
-                decoration: const BoxDecoration(
-                  color: Color(0xFFFF3B30),
-                  shape: BoxShape.circle,
-                ),
-              ),
-            ),
-          ],
+        IconButton(
+          onPressed: () => _notify(context, 'Tidak ada notifikasi baru'),
+          icon: const Icon(
+            Icons.notifications_none_rounded,
+            color: _cyan,
+            size: 26,
+          ),
+          splashRadius: 22,
         ),
       ],
     );
@@ -258,7 +241,7 @@ class HomeView extends StatelessWidget {
               width: 48,
               height: 66,
               child: Image.asset(
-                'assets/images/laskarPelangi.jpg',
+                'assets/images/Books/laskarPelangi.jpg',
                 width: 48,
                 height: 66,
                 fit: BoxFit.cover,
@@ -517,7 +500,8 @@ class HomeView extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: () => _notify(context, 'Daftar Kabar & Acara'),
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(AppRoutes.events),
               style: TextButton.styleFrom(
                 padding: EdgeInsets.zero,
                 minimumSize: Size.zero,
@@ -543,7 +527,9 @@ class HomeView extends StatelessWidget {
           itemBuilder: (context, index) {
             final event = _events[index];
             return InkWell(
-              onTap: () => _notify(context, event.title),
+              onTap: () => Navigator.of(
+                context,
+              ).pushNamed(AppRoutes.eventDetail, arguments: event),
               borderRadius: BorderRadius.circular(14),
               child: Container(
                 padding: const EdgeInsets.all(12),
@@ -660,21 +646,5 @@ class _ServiceItem {
     required this.icon,
     this.route,
     this.message,
-  });
-}
-
-class _EventItem {
-  final String month;
-  final String day;
-  final String category;
-  final String title;
-  final String locationAndTime;
-
-  const _EventItem({
-    required this.month,
-    required this.day,
-    required this.category,
-    required this.title,
-    required this.locationAndTime,
   });
 }

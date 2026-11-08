@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:library_mobile/app/config/routes.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -106,6 +107,9 @@ class ProfilePage extends StatelessWidget {
                       icon: Icons.bookmark_outline,
                       title: 'Buku Tersimpan',
                       subtitle: '8 daftar bacaan',
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.saved);
+                      },
                     ),
                   ),
                 ],
@@ -139,7 +143,8 @@ class ProfilePage extends StatelessWidget {
               // List Lokasi Perpustakaan
               _buildLocationCard(
                 title: 'Athenaeum Bandung',
-                address: 'Jl. Telekomunikasi - Ters. Buah Batu Bandung 40257 Indonesia',
+                address:
+                    'Jl. Telekomunikasi - Ters. Buah Batu Bandung 40257 Indonesia',
                 code: '32041220800082',
                 type: '• Layanan Utama',
               ),
@@ -152,8 +157,10 @@ class ProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               _buildLocationCard(
-                title: 'Tel-U Bandung - Gedung Fakultas Kedokteran Lantai 3',
-                address: 'Jl. Telekomunikasi - Ters. Buah Batu Bandung 40257 Indonesia',
+                title:
+                    'Tel-U Bandung - Gedung Fakultas Kedokteran Lantai 3',
+                address:
+                    'Jl. Telekomunikasi - Ters. Buah Batu Bandung 40257 Indonesia',
                 code: '32041220800082',
                 type: '• Pustaka Medis',
               ),
@@ -175,7 +182,7 @@ class ProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 12),
 
-              // Footer App Version
+              // Footer Info Versi
               const Center(
                 child: Text(
                   'Athenaeum Digital v2.4.0 • OpenLibrary Connect',
@@ -250,38 +257,46 @@ class ProfilePage extends StatelessWidget {
     required IconData icon,
     required String title,
     required String subtitle,
+    VoidCallback? onTap,
   }) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1E293B),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
         borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: const Color(0xFF1E293B),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(icon, color: Colors.white70, size: 22),
-              const Icon(Icons.chevron_right, color: Colors.grey, size: 18),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(icon, color: Colors.white70, size: 22),
+                  const Icon(Icons.chevron_right, color: Colors.grey, size: 18),
+                ],
+              ),
+              const SizedBox(height: 12),
+              Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                subtitle,
+                style: const TextStyle(color: Colors.grey, fontSize: 11),
+              ),
             ],
           ),
-          const SizedBox(height: 12),
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 13,
-            ),
-          ),
-          const SizedBox(height: 2),
-          Text(
-            subtitle,
-            style: const TextStyle(color: Colors.grey, fontSize: 11),
-          ),
-        ],
+        ),
       ),
     );
   }
