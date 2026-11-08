@@ -48,10 +48,7 @@ class _DetailViewState extends State<DetailView> {
 
   // ---------- Data turunan (dummy) ----------
 
-  String get _yearText {
-    final Object? year = _book.publishedYear;
-    return year?.toString() ?? '-';
-  }
+ String get _yearText => _book.publishedYear.toString();
 
   // Dummy: tanggal terbit belum ada di model
   String get _publishedDate => '1 September $_yearText';

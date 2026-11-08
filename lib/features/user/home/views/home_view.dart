@@ -5,6 +5,7 @@ import 'package:library_mobile/data/models/event_model.dart';
 import 'package:library_mobile/features/user/main/views/main_view.dart';
 
 class HomeView extends StatelessWidget {
+  // Dipanggil saat foto profil ditekan (mis. pindah ke tab Akun)
   final VoidCallback? onProfileTap;
 
   const HomeView({super.key, this.onProfileTap});
@@ -90,7 +91,7 @@ class HomeView extends StatelessWidget {
   Widget _buildHeader(BuildContext context) {
     return Row(
       children: [
-        GestureDetector(
+                GestureDetector(
           onTap: () => _handleProfileTap(context),
           child: MouseRegion(
             cursor: SystemMouseCursors.click,
@@ -114,41 +115,6 @@ class HomeView extends StatelessWidget {
               ),
             ),
           ),
-        ),
-        const SizedBox(width: 12),
-        const Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Hi, Kane!',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.2,
-                ),
-              ),
-              SizedBox(height: 2),
-              Text(
-                'Library Card : #103022400141',
-                style: TextStyle(
-                  color: _textGrey,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
-        ),
-        IconButton(
-          onPressed: () => _notify(context, 'Tidak ada notifikasi baru'),
-          icon: const Icon(
-            Icons.notifications_none_rounded,
-            color: _cyan,
-            size: 26,
-          ),
-          splashRadius: 22,
         ),
       ],
     );
@@ -376,14 +342,19 @@ class HomeView extends StatelessWidget {
                     bottom: BorderSide(color: _cardBorder, width: 1),
                   ),
                 ),
-                child: const Center(
-                  child: Text(
-                    'Coming Soon',
-                    style: TextStyle(
-                      color: _cyan,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 0.8,
+                clipBehavior: Clip.antiAlias,
+                child: Image.asset(
+                  'assets/images/map/hpmap.png',
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, _, _) => const Center(
+                    child: Text(
+                      'Coming Soon',
+                      style: TextStyle(
+                        color: _cyan,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.8,
+                      ),
                     ),
                   ),
                 ),
@@ -439,7 +410,7 @@ class HomeView extends StatelessWidget {
                     ),
                     const SizedBox(height: 14),
                     InkWell(
-                      onTap: () => _notify(context, 'Peta Perpustakaan'),
+                      onTap: () => Navigator.of(context).pushNamed(AppRoutes.map),
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
                         height: 44,
