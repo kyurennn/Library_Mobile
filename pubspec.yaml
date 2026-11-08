@@ -60,7 +60,11 @@ flutter:
   # Assets configuration
   assets:
     - assets/images/
-
+    - assets/images/Books/
+    - assets/images/Events/
+    - assets/images/map/
+    - assets/images/profilePic/
+    - assets/images/Rooms/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
