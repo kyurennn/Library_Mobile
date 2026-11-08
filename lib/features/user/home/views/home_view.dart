@@ -221,7 +221,7 @@ class HomeView extends StatelessWidget {
               width: 48,
               height: 66,
               child: Image.asset(
-                'assets/images/books/laskarPelangi.jpg',
+                'assets/images/Books/laskarPelangi.jpg',
                 width: 48,
                 height: 66,
                 fit: BoxFit.cover,
@@ -507,7 +507,9 @@ class HomeView extends StatelessWidget {
           itemBuilder: (context, index) {
             final event = _events[index];
             return InkWell(
-              onTap: () => _notify(context, event.title),
+              onTap: () => Navigator.of(
+                context,
+              ).pushNamed(AppRoutes.eventDetail, arguments: event),
               borderRadius: BorderRadius.circular(14),
               child: Container(
                 padding: const EdgeInsets.all(12),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:library_mobile/app/config/routes.dart';
 import 'package:library_mobile/data/dummy/event_dummy.dart';
 import 'package:library_mobile/data/models/event_model.dart';
 
@@ -43,13 +44,6 @@ class _EventsViewState extends State<EventsView> {
       _searchQuery = '';
       _searchController.clear();
     });
-  }
-
-  void _notify(String message) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message), duration: const Duration(seconds: 2)),
-    );
   }
 
   @override
@@ -152,7 +146,9 @@ class _EventsViewState extends State<EventsView> {
 
   Widget _buildEventCard(EventItem event) {
     return InkWell(
-      onTap: () => _notify(event.title),
+      onTap: () => Navigator.of(
+        context,
+      ).pushNamed(AppRoutes.eventDetail, arguments: event),
       borderRadius: BorderRadius.circular(16),
       child: Container(
         padding: const EdgeInsets.all(12),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:library_mobile/data/models/event_model.dart';
 import 'package:library_mobile/data/models/sample_model.dart';
 import 'package:library_mobile/features/auth/login_view.dart';
 import 'package:library_mobile/features/shared/catalog/views/catalog_view.dart';
 import 'package:library_mobile/features/shared/detail/views/detail_view.dart';
+import 'package:library_mobile/features/user/events/views/event_detail_view.dart';
 import 'package:library_mobile/features/user/events/views/events_view.dart';
 import 'package:library_mobile/features/user/home/views/home_view.dart';
 import 'package:library_mobile/features/user/main/views/main_view.dart';
@@ -23,6 +25,7 @@ class AppRoutes {
   static const String profile = '/profile';
   static const String reservation = '/reservation';
   static const String events = '/events';
+  static const String eventDetail = '/event-detail';
 
   // Handler rute bernama
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -79,6 +82,13 @@ class AppRoutes {
       case events:
         return MaterialPageRoute(
           builder: (_) => const EventsView(),
+          settings: settings,
+        );
+
+      case eventDetail:
+        final event = settings.arguments as EventItem?;
+        return MaterialPageRoute(
+          builder: (_) => EventDetailView(event: event),
           settings: settings,
         );
 
