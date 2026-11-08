@@ -95,9 +95,7 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (_) => Scaffold(
             appBar: AppBar(title: const Text('Halaman Tidak Ditemukan')),
-            body: Center(
-              child: Text('Rute ${settings.name} tidak terdaftar.'),
-            ),
+            body: Center(child: Text('Rute ${settings.name} tidak terdaftar.')),
           ),
         );
     }
