@@ -8,7 +8,6 @@ import 'package:library_mobile/features/user/reservation/widgets/date_strip.dart
 import 'package:library_mobile/features/user/reservation/widgets/room_card.dart';
 import 'package:library_mobile/features/user/reservation/widgets/session_sheet.dart';
 
-// Halaman reservasi ruangan
 class ReservationView extends StatefulWidget {
   const ReservationView({super.key});
 
@@ -19,7 +18,6 @@ class ReservationView extends StatefulWidget {
 class _ReservationViewState extends State<ReservationView> {
   static const Color _bg = Color(0xFF0B132B);
   static const Color _cardBorder = Color(0xFF1E2D4A);
-  static const Color _cyan = Color(0xFF00A8E8);
   static const Color _textGrey = Color(0xFF8E9BAE);
 
   late final List<DateTime> _days;
@@ -64,15 +62,35 @@ class _ReservationViewState extends State<ReservationView> {
         selectedIndex: 0,
         onSelected: _onNavSelected,
       ),
+      appBar: AppBar(
+        backgroundColor: _bg,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        titleSpacing: 0,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1),
+          child: Container(height: 1, color: _cardBorder),
+        ),
+        // Tombol kembali ke halaman beranda
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            if (Navigator.canPop(context)) Navigator.pop(context);
+          },
+        ),
+        title: const Text(
+          'Reservasi Ruangan',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-              child: _buildHeader(),
-            ),
-            const Divider(color: _cardBorder, height: 1),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(16, 20, 16, 24),
@@ -119,82 +137,15 @@ class _ReservationViewState extends State<ReservationView> {
     );
   }
 
-  // Header: avatar, nama, ID kartu, dan notifikasi
-  Widget _buildHeader() {
-    return Row(
-      children: [
-        Container(
-          width: 48,
-          height: 48,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: _cyan.withValues(alpha: 0.5), width: 1.8),
-          ),
-          child: ClipOval(
-            child: Image.asset(
-              'assets/images/profile_avatar.jpg',
-              fit: BoxFit.cover,
-              errorBuilder: (_, _, _) =>
-                  const Icon(Icons.person, color: Colors.white, size: 26),
-            ),
-          ),
-        ),
-        const SizedBox(width: 12),
-        const Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Hi, Kane!',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 2),
-              Text(
-                'Library Card : #103022400141',
-                style: TextStyle(color: _textGrey, fontSize: 12),
-              ),
-            ],
-          ),
-        ),
-        IconButton(
-          onPressed: () => _notify('Tidak ada notifikasi baru'),
-          icon: const Icon(
-            Icons.notifications_none_rounded,
-            color: _cyan,
-            size: 26,
-          ),
-          splashRadius: 22,
-        ),
-      ],
-    );
-  }
-
+  // Subjudul halaman + tombol riwayat (judul ada di app bar)
   Widget _buildTitle() {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Reservasi Ruangan',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 4),
-              Text(
-                'Pilih fasilitas & sesi belajarmu',
-                style: TextStyle(color: _textGrey, fontSize: 13.5),
-              ),
-            ],
+          child: Text(
+            'Pilih fasilitas & sesi belajarmu',
+            style: TextStyle(color: _textGrey, fontSize: 13.5),
           ),
         ),
         TextButton.icon(
