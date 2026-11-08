@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:library_mobile/features/user/profile/views/library_location_detail_view.dart';
 import 'package:library_mobile/features/user/profile/views/reading_history_view.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -128,6 +129,14 @@ class ProfilePage extends StatelessWidget {
                 address: 'Jl. Merdeka No. 1 Bandung 40111 Indonesia',
                 code: '3204122D00000002',
                 category: 'Layanan Utama',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const LibraryLocationDetailView(),
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 16),
               _buildLocationItem(
@@ -135,6 +144,30 @@ class ProfilePage extends StatelessWidget {
                 address: 'Jl. Cikapundung Timur No. 10 Bandung Indonesia',
                 code: '3204122D00000002',
                 category: 'Koleksi Keluarga',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const LibraryLocationDetailView(
+                        name: 'Perpustakaan Umum Bandung - Taman Baca Cikapundung',
+                        subtitle: 'Taman Baca Cikapundung',
+                        code: '3204122D00000002',
+                        address: 'Jl. Cikapundung Timur No. 10 Bandung Indonesia',
+                        openingHours: 'Selasa – Minggu • 09.00 – 18.00 WIB',
+                        phone: '+62 33 0000 0000',
+                        email: 'layanan@example.id',
+                        facilities: [
+                          'Ruang Baca',
+                          'Wi-Fi',
+                          'Area Anak',
+                          'Taman Baca',
+                        ],
+                        about:
+                            'Taman baca terbuka dengan koleksi untuk anak dan keluarga, cocok untuk membaca santai bersama.',
+                      ),
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 16),
               _buildLocationItem(
@@ -142,6 +175,32 @@ class ProfilePage extends StatelessWidget {
                 address: 'Jl. Wastukencana No. 2 Bandung 40117 Indonesia',
                 code: '3204122D00000002',
                 category: 'Pustaka Umum',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const LibraryLocationDetailView(
+                        name:
+                            'Perpustakaan Umum Bandung - Pojok Baca Balai Kota',
+                        subtitle: 'Pojok Baca Balai Kota',
+                        code: '3204122D00000002',
+                        address:
+                            'Jl. Wastukencana No. 2 Bandung 40117 Indonesia',
+                        openingHours: 'Senin – Jumat • 08.00 – 16.00 WIB',
+                        phone: '+62 44 0000 0000',
+                        email: 'layanan@example.id',
+                        facilities: [
+                          'Ruang Baca',
+                          'Wi-Fi',
+                          'Koran & Majalah',
+                          'Ruang Diskusi',
+                        ],
+                        about:
+                            'Pojok baca di area balai kota dengan koran, majalah, dan buku umum untuk pengunjung dan masyarakat.',
+                      ),
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 28),
 
@@ -255,78 +314,89 @@ class ProfilePage extends StatelessWidget {
     required String address,
     required String code,
     required String category,
+    VoidCallback? onTap,
   }) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 2.0),
-          child: Icon(
-            Icons.apartment,
-            color: Colors.white70,
-            size: 24,
-          ),
-        ),
-        const SizedBox(width: 14),
-        Expanded(
-          child: Column(
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(10),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 2.0),
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Text(
-                      name,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                        height: 1.25,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  const Icon(
-                    Icons.chevron_right,
-                    color: Colors.white70,
-                    size: 20,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 4),
-              Text(
-                address,
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12,
-                  height: 1.3,
+              const Padding(
+                padding: EdgeInsets.only(top: 2.0),
+                child: Icon(
+                  Icons.apartment,
+                  color: Colors.white70,
+                  size: 24,
                 ),
               ),
-              const SizedBox(height: 6),
-              Row(
-                children: [
-                  Text(
-                    code,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 11,
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            name,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              height: 1.25,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        const Icon(
+                          Icons.chevron_right,
+                          color: Colors.white70,
+                          size: 20,
+                        ),
+                      ],
                     ),
-                  ),
-                  const SizedBox(width: 6),
-                  Text(
-                    '• $category',
-                    style: const TextStyle(
-                      color: Colors.white70,
-                      fontSize: 11,
+                    const SizedBox(height: 4),
+                    Text(
+                      address,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 12,
+                        height: 1.3,
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 6),
+                    Row(
+                      children: [
+                        Text(
+                          code,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 11,
+                          ),
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          '• $category',
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            fontSize: 11,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
         ),
-      ],
+      ),
     );
   }
 }
