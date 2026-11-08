@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -102,38 +102,39 @@ class ProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 24),
 
-              // Kontak Kami & Lokasi Perpustakaan Section
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text('Kontak Kami', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
-                  Text('Lokasi Perpustakaan', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
-                ],
+              // Kontak Kami Section
+              const Text(
+                'Kontak Kami',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              const SizedBox(height: 12),
-              
+              const SizedBox(height: 16),
+
               // List Lokasi Perpustakaan
-              _buildLocationCard(
-                title: 'Athenaeum Bandung',
-                address: 'Jl. Telekomunikasi - Ters. Buah Batu Bandung 40257 Indonesia',
-                code: '32041220800082',
-                type: '• Layanan Utama',
+              _buildLocationItem(
+                name: 'Perpustakaan Umum Bandung - Pusat',
+                address: 'Jl. Merdeka No. 1 Bandung 40111 Indonesia',
+                code: '3204122D00000002',
+                category: 'Layanan Utama',
               ),
-              const SizedBox(height: 8),
-              _buildLocationCard(
-                title: 'Athenaeum Bandung - Kampus Geger Kalong',
-                address: 'Jl. Geger Kalong No. 1 Bandung Indonesia',
-                code: '32041220800082',
-                type: '• Koleksi Pascasarjana',
+              const SizedBox(height: 16),
+              _buildLocationItem(
+                name: 'Perpustakaan Umum Bandung - Taman Baca Cikapundung',
+                address: 'Jl. Cikapundung Timur No. 10 Bandung Indonesia',
+                code: '3204122D00000002',
+                category: 'Koleksi Keluarga',
               ),
-              const SizedBox(height: 8),
-              _buildLocationCard(
-                title: 'Tel-U Bandung - Gedung Fakultas Kedokteran Lantai 3',
-                address: 'Jl. Telekomunikasi - Ters. Buah Batu Bandung 40257 Indonesia',
-                code: '32041220800082',
-                type: '• Pustaka Medis',
+              const SizedBox(height: 16),
+              _buildLocationItem(
+                name: 'Perpustakaan Umum Bandung - Pojok Baca Balai Kota',
+                address: 'Jl. Wastukencana No. 2 Bandung 40117 Indonesia',
+                code: '3204122D00000002',
+                category: 'Pustaka Umum',
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 28),
 
               // Tombol Keluar
               Center(
@@ -228,39 +229,83 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildLocationCard({required String title, required String address, required String code, required String type}) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1E293B),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Icon(Icons.business, color: Colors.white70, size: 22),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13)),
-                const SizedBox(height: 2),
-                Text(address, style: const TextStyle(color: Colors.grey, fontSize: 11)),
-                const SizedBox(height: 6),
-                Row(
-                  children: [
-                    Text(code, style: const TextStyle(color: Colors.grey, fontSize: 10)),
-                    const SizedBox(width: 6),
-                    Text(type, style: const TextStyle(color: Colors.blueAccent, fontSize: 10)),
-                  ],
-                ),
-              ],
-            ),
+  Widget _buildLocationItem({
+    required String name,
+    required String address,
+    required String code,
+    required String category,
+  }) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+          padding: EdgeInsets.only(top: 2.0),
+          child: Icon(
+            Icons.apartment,
+            color: Colors.white70,
+            size: 24,
           ),
-          const Icon(Icons.chevron_right, color: Colors.grey, size: 20),
-        ],
-      ),
+        ),
+        const SizedBox(width: 14),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Text(
+                      name,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        height: 1.25,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  const Icon(
+                    Icons.chevron_right,
+                    color: Colors.white70,
+                    size: 20,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 4),
+              Text(
+                address,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
+                  height: 1.3,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Row(
+                children: [
+                  Text(
+                    code,
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 11,
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    '• $category',
+                    style: const TextStyle(
+                      color: Colors.white70,
+                      fontSize: 11,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
